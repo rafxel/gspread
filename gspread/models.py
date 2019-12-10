@@ -891,6 +891,24 @@ class Worksheet(object):
         }
 
         return self.spreadsheet.values_append(self.title, params, body)
+    
+    def append_rows(self, values, value_input_option='RAW'):
+        """Adds multiple rows to the worksheet with values populated.
+        The input should be a list of lists, with the lists each
+        containing one row's values.
+        Widens the worksheet if there are more values than columns.
+        :param values: List of row lists.
+        """
+        params = {
+                'valueInputOption': value_input_option
+        }
+
+        body = {
+                'majorDimension': 'ROWS',
+                'values': values
+        }
+
+        return self.spreadsheet.values_append(self.title, params, body)
 
     def insert_row(
         self,
